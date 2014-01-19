@@ -34,7 +34,7 @@ class Application
 
     query = "
       INSERT INTO ceps
-      SELECT  RS.CEP AS CEP,
+      SELECT DISTINCT RS.CEP AS CEP,
               RS.ENDERECO AS ENDERECO,
               RS.BAIRRO AS BAIRRO,
               RS.CIDADE AS CIDADE,
@@ -72,7 +72,7 @@ class Application
                 SELECT  ifnull(log.CEP, loc.CEP) AS CEP,
                         CASE log.LOG_STA_TLO
                         WHEN 'S' THEN
-                          ifnull(log.TLO_TX, '') || ' ' || ifnull(log.LOG_NO, '')
+                          CONCAT (IFNULL(LOG.TLO_TX, ''),' ',IFNULL(LOG.LOG_NO, ''))
                         ELSE
                           ifnull(log.LOG_NO, '')
                         END ENDERECO,

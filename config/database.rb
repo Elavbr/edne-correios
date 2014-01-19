@@ -3,7 +3,7 @@
 require "data_mapper"
 require "dm-migrations/migration_runner"
 
-DataMapper.setup(:default,  "sqlite3:db/database.sqlite3")
+DataMapper.setup(:default, "mysql://root:pass@localhost:3306/edne")
 
 DataMapper::Logger.new STDOUT, :debug
 DataMapper::Model.raise_on_save_failure = true
@@ -38,12 +38,12 @@ end
 migration MODEL_CLASSES.size + 1, :create_table_ceps do
   up do
     create_table :ceps do
-      column :cep, String, length: 255
-      column :endereco, String, length: 255
-      column :bairro, String, length: 255
-      column :cidade, String, length: 255
-      column :estado, String, length: 255
-      column :nome_estado, String, length: 255
+      column :cep, String, length: 8
+      column :endereco, String, length: 150
+      column :bairro, String, length: 72
+      column :cidade, String, length: 72
+      column :estado, String, length: 2
+      column :nome_estado, String, length: 30
     end
   end
 
