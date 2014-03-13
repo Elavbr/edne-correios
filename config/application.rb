@@ -69,19 +69,19 @@ class Application
               WHEN 'TO' THEN 'Tocantins'
               END AS NOME_ESTADO
       FROM (
-                SELECT  ifnull(log.CEP, loc.CEP) AS CEP,
-                        CASE log.LOG_STA_TLO
+                SELECT  ifnull(lg.CEP, loc.CEP) AS CEP,
+                        CASE lg.LOG_STA_TLO
                         WHEN 'S' THEN
-                          CONCAT (IFNULL(LOG.TLO_TX, ''),' ',IFNULL(LOG.LOG_NO, ''))
+                          CONCAT (IFNULL(lg.TLO_TX, ''),' ',IFNULL(lg.LOG_NO, ''))
                         ELSE
-                          ifnull(log.LOG_NO, '')
+                          ifnull(lg.LOG_NO, '')
                         END ENDERECO,
                         ifnull(bai.BAI_NO, '')   AS BAIRRO,
                         loc.LOC_NO               AS CIDADE,
                         loc.UFE_SG               AS UF
                 FROM localidades loc
-                LEFT JOIN logradouros log ON log.LOC_NU = loc.LOC_NU
-                LEFT JOIN bairros bai     ON log.BAI_NU_INI = bai.BAI_NU
+                LEFT JOIN logradouros lg ON lg.LOC_NU = loc.LOC_NU
+                LEFT JOIN bairros bai     ON lg.BAI_NU_INI = bai.BAI_NU
 
                 UNION ALL
 
