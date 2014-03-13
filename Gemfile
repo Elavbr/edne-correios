@@ -6,4 +6,4 @@ gem "dm-mysql-adapter"
 gem "dm-migrations"
 
 gem "pry"
-gem "pry-debugger"
+#gem "pry-debugger"
