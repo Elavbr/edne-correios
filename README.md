@@ -61,7 +61,7 @@ mv eDNE_Delta_Basico_ddmm/Delimitado/DELTA* edne-correios/data/delta/
 
 Importe a base e o delta:
 ```shell
-bundle exec rake import:base
+bundle exec rake import:log
 bundle exec rake import:delta
 ```
 
